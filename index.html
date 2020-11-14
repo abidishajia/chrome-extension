@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Tracker</title>
+    <link href="bootstrap.min.css" rel="stylesheet" />
+    <style>
+      body,
+      html {
+        height: 100%;
+      }
+      .container,
+      #header{
+        height: 100%;
+        min-height: 100%;
+      }
+
+      #form,
+      #tasksForm,
+      #listContainer,
+      #addTask {
+        display: none;
+      }
+
+      .bgImage{
+        background-color: #cccccc;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .pinkGradient{
+        background: rgb(238,174,202);
+        background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+      }
+
+      .blueGradient{
+        background: rgb(150,174,180);
+        background: linear-gradient(90deg, rgba(150,174,180,1) 0%, rgba(50,148,167,1) 55%, rgba(2,68,84,1) 100%);
+      }
+      
+      /* When clicked on, add a background color and strike out text */
+      ul li.complete {
+        background: #888;
+        color: #fff;
+        text-decoration: line-through;
+      }
+
+      /* Add a "checked" mark when clicked on */
+      ul li.complete::before {
+        content: "";
+        position: absolute;
+        border-color: #fff;
+        border-style: solid;
+        border-width: 0 2px 2px 0;
+        top: 10px;
+        left: 16px;
+        transform: rotate(45deg);
+        height: 15px;
+        width: 7px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row align-items-center justify-content-center" id="header">
+        <div class="col">
+          <h1 class="text-center"></h1>
+          <h3 id="time"></h3>
+        </div>
+        <div class="col">
+          <form id="form">
+            <div class="form-group">
+              <label>What is your name?</label>
+              <input
+                type="text"
+                class="form-control"
+                aria-describedby="emailHelp"
+                placeholder="Enter Name"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+
+          <form id="tasksForm">
+            <div class="form-group">
+              <label>What tasks would you like to track everyday?</label>
+              <input
+                type="text"
+                class="form-control"
+                aria-describedby="emailHelp"
+                placeholder="Title"
+                id="initialTasks"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary" id="initialTaskBtn">
+              Add Task
+            </button>
+            <button type="submit" class="btn btn-link" id="done">Done</button>
+          </form>
+
+          <ul class="list-group" id="initialList"></ul>
+
+          <div id="listContainer">
+            <p>We are keeping track of the following tasks today:</p>
+            <ul class="list-group" id="list"></ul>
+            <p id="addtask"> Would you like to add more tasks to keep track of?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="app.js"></script>
+
+    <!-- //Zen -->
+
+    <!-- <span>Photo by <a href="https://unsplash.com/@fcornish?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Faye Cornish</a> on <a href="https://unsplash.com/s/photos/calm?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->
+    <!-- <span>Photo by <a href="https://unsplash.com/@oriento?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">五玄土 ORIENTO</a> on <a href="https://unsplash.com/s/photos/calm?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->
+    <!-- <span>Photo by <a href="https://unsplash.com/@wildspot?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Aurélien - Wild Spot</a> on <a href="https://unsplash.com/s/photos/zen?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->
+    <!-- <span>Photo by <a href="https://unsplash.com/@jtkyber1?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Joey Kyber</a> on <a href="https://unsplash.com/s/photos/zen?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->
+
+    <!-- // Happy -->
+    <!-- <span>Photo by <a href="https://unsplash.com/@edulauton?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Edu Lauton</a> on <a href="https://unsplash.com/s/photos/happy?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->
+    <!-- <span>Photo by <a href="https://unsplash.com/@monaeendra?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Mona Eendra</a> on <a href="https://unsplash.com/s/photos/happy?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->
+    <!-- <span>Photo by <a href="https://unsplash.com/@shimakhoshzaman?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Shima Khoshzaman</a> on <a href="https://unsplash.com/t/nature?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->
+  
+  
+  </body>
+</html>

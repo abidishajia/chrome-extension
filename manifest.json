@@ -1,0 +1,19 @@
+{
+  "manifest_version" : 2,
+  "name" : "Task Tracker",
+  "version" : "1",
+  "description" : "Extension to keep track of our tasks",
+  "icons" : {
+    "16": "icons/pin16.png",
+    "48": "icons/pin48.png",
+    "128" : "icons/pin128.png"
+  },
+  "permissions": ["storage"],
+  "background":{
+    "scripts": ["jquery.min.js", "background.js"],
+    "persistent": false
+  },
+  "chrome_url_overrides" : {
+    "newtab": "index.html"
+  }
+}

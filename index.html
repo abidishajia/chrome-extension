@@ -10,35 +10,41 @@
       html {
         height: 100%;
       }
-      .container,
-      #header{
+      .container, #header{
         height: 100%;
         min-height: 100%;
       }
 
-      #form,
-      #tasksForm,
-      #listContainer,
-      #addTask {
+      #registerUser,
+      #tasksForm {
         display: none;
       }
 
-      .bgImage{
-        background-color: #cccccc;
-        background-repeat: no-repeat;
-        background-size: cover;
+      #listContainer {
+        max-height: 500px;
+        border: 1px solid gray;
+        overflow: scroll;
       }
 
-      .pinkGradient{
-        background: rgb(238,174,202);
-        background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+      .pinkGradient {
+        background: rgb(238, 174, 202);
+        background: linear-gradient(
+          90deg,
+          rgba(238, 174, 202, 1) 0%,
+          rgba(148, 187, 233, 1) 100%
+        );
       }
 
-      .blueGradient{
-        background: rgb(150,174,180);
-        background: linear-gradient(90deg, rgba(150,174,180,1) 0%, rgba(50,148,167,1) 55%, rgba(2,68,84,1) 100%);
+      .blueGradient {
+        background: rgb(150, 174, 180);
+        background: linear-gradient(
+          90deg,
+          rgba(150, 174, 180, 1) 0%,
+          rgba(50, 148, 167, 1) 55%,
+          rgba(2, 68, 84, 1) 100%
+        );
       }
-      
+
       /* When clicked on, add a background color and strike out text */
       ul li.complete {
         background: #888;
@@ -59,17 +65,22 @@
         height: 15px;
         width: 7px;
       }
+
+      span {
+        float: right;
+      }
     </style>
   </head>
   <body>
+
     <div class="container">
-      <div class="row align-items-center justify-content-center" id="header">
-        <div class="col">
-          <h1 class="text-center"></h1>
-          <h3 id="time"></h3>
+      <div class="row justify-content-between" id="header">
+        <div class="col col-md-12 align-self-center">
+          <h3 id="greeting">Hello</h3>
         </div>
-        <div class="col">
-          <form id="form">
+
+        <div class="col col-md-4">
+          <form id="registerUser">
             <div class="form-group">
               <label>What is your name?</label>
               <input
@@ -77,9 +88,12 @@
                 class="form-control"
                 aria-describedby="emailHelp"
                 placeholder="Enter Name"
+                id="userName"
               />
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" id="submitName">
+              Submit
+            </button>
           </form>
 
           <form id="tasksForm">
@@ -89,43 +103,29 @@
                 type="text"
                 class="form-control"
                 aria-describedby="emailHelp"
-                placeholder="Title"
-                id="initialTasks"
+                placeholder="I'd like to keep track of..."
+                id="tasks"
               />
             </div>
-            <button type="submit" class="btn btn-primary" id="initialTaskBtn">
+            <button type="submit" class="btn btn-primary" id="addTask">
               Add Task
             </button>
             <button type="submit" class="btn btn-link" id="done">Done</button>
           </form>
-
-          <ul class="list-group" id="initialList"></ul>
-
-          <div id="listContainer">
-            <p>We are keeping track of the following tasks today:</p>
-            <ul class="list-group" id="list"></ul>
-            <p id="addtask"> Would you like to add more tasks to keep track of?</p>
-          </div>
         </div>
+
+          <div class="col col-md-5">
+            <div class="mb-5" id="listContainer">
+              <ul class="list-group" id="tasksList"></ul>
+            </div>
+          </div>
       </div>
     </div>
+
 
     <script src="jquery.min.js"></script>
     <script src="bootstrap.min.js"></script>
     <script src="app.js"></script>
 
-    <!-- //Zen -->
-
-    <!-- <span>Photo by <a href="https://unsplash.com/@fcornish?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Faye Cornish</a> on <a href="https://unsplash.com/s/photos/calm?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->
-    <!-- <span>Photo by <a href="https://unsplash.com/@oriento?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">五玄土 ORIENTO</a> on <a href="https://unsplash.com/s/photos/calm?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->
-    <!-- <span>Photo by <a href="https://unsplash.com/@wildspot?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Aurélien - Wild Spot</a> on <a href="https://unsplash.com/s/photos/zen?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->
-    <!-- <span>Photo by <a href="https://unsplash.com/@jtkyber1?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Joey Kyber</a> on <a href="https://unsplash.com/s/photos/zen?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->
-
-    <!-- // Happy -->
-    <!-- <span>Photo by <a href="https://unsplash.com/@edulauton?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Edu Lauton</a> on <a href="https://unsplash.com/s/photos/happy?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->
-    <!-- <span>Photo by <a href="https://unsplash.com/@monaeendra?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Mona Eendra</a> on <a href="https://unsplash.com/s/photos/happy?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->
-    <!-- <span>Photo by <a href="https://unsplash.com/@shimakhoshzaman?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Shima Khoshzaman</a> on <a href="https://unsplash.com/t/nature?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> -->
-  
-  
   </body>
 </html>

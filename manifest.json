@@ -10,7 +10,7 @@
   },
   "permissions": ["storage"],
   "background":{
-    "scripts": ["jquery.min.js", "background.js"],
+    "scripts": ["jquery.min.js"],
     "persistent": false
   },
   "chrome_url_overrides" : {

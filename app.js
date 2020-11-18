@@ -1,28 +1,3 @@
-registerUser = () => {
-  $("#registerUser").css("display", "block");
-  $("#submitName").click((e) => {
-    e.preventDefault();
-    const name = $("#userName").val();
-    $("#registerUser").css("display", "none");
-    displayName(name);
-    displayTaskForm();
-
-    chrome.storage.sync.set({
-      name: name,
-    });
-  });
-};
-
-displayTaskForm = () => {
-  $("#tasksForm").css("display", "block");
-};
-
-displayName = (name) => {
-  $("#greeting").append(`, ${name}!`);
-};
-
-// If the user is registered
-
 addTasktoTheList = (task) => {
   const ul = $("#tasksList");
   const li = document.createElement("li");
@@ -74,63 +49,40 @@ const updateComplete = (e) => {
   }
 };
 
-userRegistered = () => {
-  $("#addTask").click((e) => {
-    e.preventDefault();
+$("#addTask").click((e) => {
+  e.preventDefault();
 
-    let task = $("#tasks").val();
+  let task = $("#tasks").val();
 
-    if (!task.length) {
-      alert("Please add a task to add");
+  if (!task.length) {
+    alert("Please add a task to add");
 
-      //! add a UI element
-    } else {
-      $("#tasks").val("");
-      const obj = {
-        task: task,
-        complete: false,
-        id: `${Math.floor(Math.random() * 100)}${Math.floor(
-          Math.random() * 100
-        )}`,
-      };
+    //! add a UI element
+  } else {
+    const obj = {
+      task: task,
+      complete: false,
+      id: `${Math.floor(Math.random() * 100)}${Math.floor(
+        Math.random() * 100
+      )}`,
+    };
 
-      chrome.storage.sync.get("tasks", function (result) {
-        if(result.tasks){
-          console.log({result})
-          let list = result.tasks;
-          list.push(obj);
-          chrome.storage.sync.set({ tasks: list });
-        }
-        if(!result.tasks){
-          console.log('not result.task')
-          let list = [];
-          list.push(obj)
-          chrome.storage.sync.set({ tasks: list });
-        }
-      });
+    chrome.storage.sync.get("tasks", function (result) {
+      if (result.tasks) {
+        let list = result.tasks;
+        list.push(obj);
+        chrome.storage.sync.set({ tasks: list });
+      }
+    });
 
-      addTasktoTheList(obj);
-    }
-  });
-};
-
-chrome.storage.sync.get("name", function (result) {
-  //* if name exist
-  if (result.name) {
-    displayName(result.name);
-    displayTaskForm();
-    userRegistered(result);
-  }
-  //* If name doesn't exist
-  else {
-    registerUser(result);
+    addTasktoTheList(obj);
+    $("#tasks").val("");
   }
 });
 
 //if list exists
 chrome.storage.sync.get("tasks", function (result) {
   if (result.tasks) {
-    console.log('here goes ')
     result.tasks.map((task) => {
       addTasktoTheList(task);
     });
@@ -138,13 +90,41 @@ chrome.storage.sync.get("tasks", function (result) {
 
   if (!result.tasks) {
     chrome.storage.sync.set({ tasks: [] });
-    console.log('border none')
-    $("#listContainer").css("border", "none");
   }
 });
 
+getDate = () => {
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const date = new Date();
+  const weekday = date.getDay();
+  const day = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
 
+  return `${days[weekday]} - ${day} ${months[month]}, ${year}`;
+};
 
-
-
+$("#date").html(getDate());

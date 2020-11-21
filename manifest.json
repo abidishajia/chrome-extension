@@ -4,9 +4,9 @@
   "version" : "1",
   "description" : "Extension to keep track of our tasks",
   "icons" : {
-    "16": "icons/pin16.png",
-    "48": "icons/pin48.png",
-    "128" : "icons/pin128.png"
+    "16": "icons/task16.png",
+    "48": "icons/task48.png",
+    "128" : "icons/task128.png"
   },
   "permissions": ["storage"],
   "background":{
